@@ -1,0 +1,41 @@
+{
+  "interactions" : [
+    {
+      "request" : {
+        "headers" : {
+
+        },
+        "body" : "W3siYSI6ImciLCJnIjoiMSIsInAiOiJRNjRUQ0FvWiIsInNzbCI6IjEifV0=",
+        "url" : "https:\/\/g.api.mega.co.nz\/cs?id=3020759117",
+        "method" : "POST"
+      },
+      "recorded_at" : 1639334896.4561391,
+      "response" : {
+        "url" : "https:\/\/g.api.mega.co.nz\/cs?id=3020759117",
+        "headers" : {
+          "Original-Content-Length" : "344",
+          "Access-Control-Allow-Origin" : "*",
+          "Access-Control-Expose-Headers" : "Original-Content-Length",
+          "Access-Control-Max-Age" : "86400",
+          "Connection" : "keep-alive",
+          "Content-Length" : "344",
+          "Access-Control-Allow-Headers" : "Content-Type, MEGA-Chrome-Antileak",
+          "Content-Type" : "application\/json"
+        },
+        "status" : 200,
+        "body" : [
+          {
+            "at" : "EZY15byenXBGPA7bQw3c44tf51J8uFSKt3wXakv0NX6wd9OM08-VkNzTJzALGPyAgOS6B1lJAPYHgjiYhqVZbA",
+            "tl" : 0,
+            "g" : "https:\/\/gfs270n074.userstorage.mega.co.nz\/dl\/1nzVx5oo1BXvEQLuPBqmCJJO3Sf2XMmOd5pjSRaN4N3ifkVFm0fqSLujl9SSkCn_tSiDhmAgshYSfCUkijRZmcLlsZVZr8gdlpNerC5zQvW2waXmTNUFydtDQ4ASZw",
+            "s" : 5,
+            "msd" : 1,
+            "ip" : [
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "name" : "getDownloadLink"
+}

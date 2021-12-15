@@ -18,6 +18,15 @@
           "revision": "4b0565384d3c4c588af09e660535b2c7c9bf5b39",
           "version": "1.4.2"
         }
+      },
+      {
+        "package": "DVR",
+        "repositoryURL": "git@github.com:venmo/DVR.git",
+        "state": {
+          "branch": null,
+          "revision": "d13f7135d1993053580efe13c9ecc43200852d09",
+          "version": "2.1.0"
+        }
       }
     ]
   },

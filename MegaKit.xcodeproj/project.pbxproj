@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E471CCE2768CF5300DE402C /* getContents.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E471CCD2768CF5300DE402C /* getContents.json */; };
+		4E471CD02768D27A00DE402C /* getContentsUnknownError.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E471CCF2768D27A00DE402C /* getContentsUnknownError.json */; };
+		4E471CD22768D6A100DE402C /* getContentsReturnsAPIError.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E471CD12768D6A100DE402C /* getContentsReturnsAPIError.json */; };
+		4E471CD4276912F000DE402C /* getContentsReturnsHTTPError.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E471CD3276912F000DE402C /* getContentsReturnsHTTPError.json */; };
+		4E471CD627691A0800DE402C /* getContentsReturnsBadResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E471CD527691A0800DE402C /* getContentsReturnsBadResponse.json */; };
+		4E471CD8276922E600DE402C /* getFileMetadata.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E471CD7276922E600DE402C /* getFileMetadata.json */; };
+		4E471CE02769AEAF00DE402C /* login.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E471CDF2769AEAF00DE402C /* login.json */; };
+		4E471CE2276A77F800DE402C /* MegaLoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E471CE1276A77F800DE402C /* MegaLoginTests.swift */; };
 		4E8A73042761358700BD3B5F /* MegaKit.docc in Sources */ = {isa = PBXBuildFile; fileRef = 4E8A73032761358700BD3B5F /* MegaKit.docc */; };
 		4E8A730A2761358700BD3B5F /* MegaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E8A73002761358700BD3B5F /* MegaKit.framework */; };
 		4E8A730F2761358700BD3B5F /* ConfigParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8A730E2761358700BD3B5F /* ConfigParserTests.swift */; };
@@ -25,6 +33,12 @@
 		4E970C6627631CDC00A73229 /* MegaClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E970C6527631CDC00A73229 /* MegaClient.swift */; };
 		4E970C6827631EC900A73229 /* MegaError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E970C6727631EC900A73229 /* MegaError.swift */; };
 		4E970C6A2763207300A73229 /* Data+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E970C692763207300A73229 /* Data+Hex.swift */; };
+		4EB91FB02765C0F500A9317D /* DVR in Frameworks */ = {isa = PBXBuildFile; productRef = 4EB91FAF2765C0F500A9317D /* DVR */; };
+		4EB91FB22765C10E00A9317D /* MegaClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB91FB12765C10E00A9317D /* MegaClientTests.swift */; };
+		4EDAE8A027667B8D00BFF222 /* getDownloadLink.json in Resources */ = {isa = PBXBuildFile; fileRef = 4EDAE89F27667B8D00BFF222 /* getDownloadLink.json */; };
+		4EDAE8A22767024200BFF222 /* getDownloadLinkReturnsAPIError.json in Resources */ = {isa = PBXBuildFile; fileRef = 4EDAE8A12767024200BFF222 /* getDownloadLinkReturnsAPIError.json */; };
+		4EDAE8A9276714FA00BFF222 /* getDownloadLinkReturnsBadResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 4EDAE8A7276714FA00BFF222 /* getDownloadLinkReturnsBadResponse.json */; };
+		4EDAE8AA276714FA00BFF222 /* getDownloadLinkReturnsHTTPError.json in Resources */ = {isa = PBXBuildFile; fileRef = 4EDAE8A8276714FA00BFF222 /* getDownloadLinkReturnsHTTPError.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +56,14 @@
 		4E18B38726A9BDEC00522810 /* Array+Blocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Blocks.swift"; sourceTree = "<group>"; };
 		4E18B38926A9BE1600522810 /* String+Base64.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Base64.swift"; sourceTree = "<group>"; };
 		4E18B38B26A9C18E00522810 /* MegaLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MegaLink.swift; sourceTree = "<group>"; };
+		4E471CCD2768CF5300DE402C /* getContents.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = getContents.json; sourceTree = "<group>"; };
+		4E471CCF2768D27A00DE402C /* getContentsUnknownError.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = getContentsUnknownError.json; sourceTree = "<group>"; };
+		4E471CD12768D6A100DE402C /* getContentsReturnsAPIError.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = getContentsReturnsAPIError.json; sourceTree = "<group>"; };
+		4E471CD3276912F000DE402C /* getContentsReturnsHTTPError.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = getContentsReturnsHTTPError.json; sourceTree = "<group>"; };
+		4E471CD527691A0800DE402C /* getContentsReturnsBadResponse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = getContentsReturnsBadResponse.json; sourceTree = "<group>"; };
+		4E471CD7276922E600DE402C /* getFileMetadata.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = getFileMetadata.json; sourceTree = "<group>"; };
+		4E471CDF2769AEAF00DE402C /* login.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = login.json; sourceTree = "<group>"; };
+		4E471CE1276A77F800DE402C /* MegaLoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MegaLoginTests.swift; sourceTree = "<group>"; };
 		4E4C80292759080A0058B8DE /* ConfigParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigParser.swift; sourceTree = "<group>"; };
 		4E8A73002761358700BD3B5F /* MegaKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MegaKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E8A73022761358700BD3B5F /* MegaKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MegaKit.h; sourceTree = "<group>"; };
@@ -55,6 +77,11 @@
 		4E970C6727631EC900A73229 /* MegaError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MegaError.swift; sourceTree = "<group>"; };
 		4E970C692763207300A73229 /* Data+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Hex.swift"; sourceTree = "<group>"; };
 		4EA05CF72750193600C31F77 /* AESDecryptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AESDecryptor.swift; sourceTree = "<group>"; };
+		4EB91FB12765C10E00A9317D /* MegaClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MegaClientTests.swift; sourceTree = "<group>"; };
+		4EDAE89F27667B8D00BFF222 /* getDownloadLink.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = getDownloadLink.json; sourceTree = "<group>"; };
+		4EDAE8A12767024200BFF222 /* getDownloadLinkReturnsAPIError.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = getDownloadLinkReturnsAPIError.json; sourceTree = "<group>"; };
+		4EDAE8A7276714FA00BFF222 /* getDownloadLinkReturnsBadResponse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = getDownloadLinkReturnsBadResponse.json; sourceTree = "<group>"; };
+		4EDAE8A8276714FA00BFF222 /* getDownloadLinkReturnsHTTPError.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = getDownloadLinkReturnsHTTPError.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +99,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E8A730A2761358700BD3B5F /* MegaKit.framework in Frameworks */,
+				4EB91FB02765C0F500A9317D /* DVR in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,7 +150,10 @@
 				4E8A731927613D6B00BD3B5F /* AESDecryptorTests.swift */,
 				4E8A730E2761358700BD3B5F /* ConfigParserTests.swift */,
 				4E970C6027627FE300A73229 /* Fixtures.swift */,
+				4EB91FB12765C10E00A9317D /* MegaClientTests.swift */,
 				4E970C6327630DBD00A73229 /* MegaLinkTests.swift */,
+				4E471CE1276A77F800DE402C /* MegaLoginTests.swift */,
+				4EB91FB5276629BB00A9317D /* DVR */,
 			);
 			name = MegaKitTests;
 			path = Tests/MegaKitTests;
@@ -133,6 +164,24 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4EB91FB5276629BB00A9317D /* DVR */ = {
+			isa = PBXGroup;
+			children = (
+				4E471CCD2768CF5300DE402C /* getContents.json */,
+				4E471CD12768D6A100DE402C /* getContentsReturnsAPIError.json */,
+				4E471CD527691A0800DE402C /* getContentsReturnsBadResponse.json */,
+				4E471CD3276912F000DE402C /* getContentsReturnsHTTPError.json */,
+				4E471CCF2768D27A00DE402C /* getContentsUnknownError.json */,
+				4EDAE89F27667B8D00BFF222 /* getDownloadLink.json */,
+				4EDAE8A12767024200BFF222 /* getDownloadLinkReturnsAPIError.json */,
+				4EDAE8A7276714FA00BFF222 /* getDownloadLinkReturnsBadResponse.json */,
+				4EDAE8A8276714FA00BFF222 /* getDownloadLinkReturnsHTTPError.json */,
+				4E471CD7276922E600DE402C /* getFileMetadata.json */,
+				4E471CDF2769AEAF00DE402C /* login.json */,
+			);
+			path = DVR;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,6 +234,9 @@
 				4E8A730C2761358700BD3B5F /* PBXTargetDependency */,
 			);
 			name = MegaKitTests;
+			packageProductDependencies = (
+				4EB91FAF2765C0F500A9317D /* DVR */,
+			);
 			productName = MegaKitTests;
 			productReference = 4E8A73092761358700BD3B5F /* MegaKitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -218,6 +270,7 @@
 			packageReferences = (
 				4EDE4D56275FE32F00F1A72C /* XCRemoteSwiftPackageReference "BigInt" */,
 				4EDE4D59275FE35300F1A72C /* XCRemoteSwiftPackageReference "CryptoSwift" */,
+				4EB91FAC2765C0C300A9317D /* XCRemoteSwiftPackageReference "DVR" */,
 			);
 			productRefGroup = 4E08701A26A9937400279E6A /* Products */;
 			projectDirPath = "";
@@ -241,6 +294,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E471CD22768D6A100DE402C /* getContentsReturnsAPIError.json in Resources */,
+				4E471CD02768D27A00DE402C /* getContentsUnknownError.json in Resources */,
+				4EDAE8A22767024200BFF222 /* getDownloadLinkReturnsAPIError.json in Resources */,
+				4E471CD627691A0800DE402C /* getContentsReturnsBadResponse.json in Resources */,
+				4EDAE8A9276714FA00BFF222 /* getDownloadLinkReturnsBadResponse.json in Resources */,
+				4E471CCE2768CF5300DE402C /* getContents.json in Resources */,
+				4E471CE02769AEAF00DE402C /* login.json in Resources */,
+				4EDAE8A027667B8D00BFF222 /* getDownloadLink.json in Resources */,
+				4E471CD4276912F000DE402C /* getContentsReturnsHTTPError.json in Resources */,
+				4EDAE8AA276714FA00BFF222 /* getDownloadLinkReturnsHTTPError.json in Resources */,
+				4E471CD8276922E600DE402C /* getFileMetadata.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,7 +335,9 @@
 				4E8A731A27613D6B00BD3B5F /* AESDecryptorTests.swift in Sources */,
 				4E970C6427630DBD00A73229 /* MegaLinkTests.swift in Sources */,
 				4E8A730F2761358700BD3B5F /* ConfigParserTests.swift in Sources */,
+				4E471CE2276A77F800DE402C /* MegaLoginTests.swift in Sources */,
 				4E970C6127627FE300A73229 /* Fixtures.swift in Sources */,
+				4EB91FB22765C10E00A9317D /* MegaClientTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,6 +612,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		4EB91FAC2765C0C300A9317D /* XCRemoteSwiftPackageReference "DVR" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:venmo/DVR.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		4EDE4D56275FE32F00F1A72C /* XCRemoteSwiftPackageReference "BigInt" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:attaswift/BigInt.git";
@@ -574,6 +648,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4EDE4D56275FE32F00F1A72C /* XCRemoteSwiftPackageReference "BigInt" */;
 			productName = BigInt;
+		};
+		4EB91FAF2765C0F500A9317D /* DVR */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4EB91FAC2765C0C300A9317D /* XCRemoteSwiftPackageReference "DVR" */;
+			productName = DVR;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

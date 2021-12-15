@@ -1,0 +1,77 @@
+{
+  "interactions" : [
+    {
+      "response" : {
+        "status" : 200,
+        "url" : "https:\/\/g.api.mega.co.nz\/cs?id=3020759117&n=0nwH1AAZ",
+        "body" : [
+          {
+            "f" : [
+              {
+                "k" : "tr4yFSBa:9hSjFIRhoU_aM5eUYHSR5w",
+                "t" : 1,
+                "p" : "8652UDaa",
+                "h" : "tr4yFSBa",
+                "u" : "SgWDwOhNCHg",
+                "ts" : 1639199847,
+                "a" : "D9KDc9rxdcqTdK0-uIPhiY27d5vnx3nzIDDwt5tDgRk"
+              },
+              {
+                "k" : "tr4yFSBa:SMLAaU1Izes8fxPqJdbGUQ",
+                "t" : 1,
+                "p" : "tr4yFSBa",
+                "h" : "E7oSWQJA",
+                "u" : "SgWDwOhNCHg",
+                "ts" : 1639112104,
+                "a" : "7SRUHvagJofzlsKThqCUlg"
+              },
+              {
+                "k" : "tr4yFSBa:JZdro-Ce1kEPhP7_JtzRCh2OO3-OKoXD6XiIxcn6rZI",
+                "t" : 0,
+                "p" : "tr4yFSBa",
+                "h" : "Ezx1FQxQ",
+                "u" : "SgWDwOhNCHg",
+                "ts" : 1639487377,
+                "fa" : "891:0*F6qFMxi2-XM\/111:1*TamyDqgN0sM",
+                "a" : "AShRj_aYSzTSRssA4L7vPZh3E5Z6fGlGAayETg8jgGWU6J9LGIvptj5xj2Tvn3glZ3zKFubbDbKOTWJKBX53wadmDypJtLfPQhbuuqOoit8",
+                "s" : 254082
+              },
+              {
+                "k" : "tr4yFSBa:v6IkPkeZpJtORHT9YbChLYHmMAGHMZcL1B1K8A7aZX4",
+                "t" : 0,
+                "p" : "E7oSWQJA",
+                "h" : "AvxX2IIA",
+                "u" : "SgWDwOhNCHg",
+                "ts" : 1639026984,
+                "a" : "EZY15byenXBGPA7bQw3c44tf51J8uFSKt3wXakv0NX6wd9OM08-VkNzTJzALGPyAgOS6B1lJAPYHgjiYhqVZbA",
+                "s" : 5
+              }
+            ],
+            "sn" : "WvUTlxLrmm4",
+            "noc" : 1
+          }
+        ],
+        "headers" : {
+          "Access-Control-Expose-Headers" : "Original-Content-Length",
+          "Access-Control-Allow-Headers" : "Content-Type, MEGA-Chrome-Antileak",
+          "Access-Control-Max-Age" : "86400",
+          "Content-Type" : "application\/json",
+          "Content-Length" : "864",
+          "Connection" : "keep-alive",
+          "Access-Control-Allow-Origin" : "*",
+          "Original-Content-Length" : "864"
+        }
+      },
+      "request" : {
+        "method" : "POST",
+        "body" : "W3siYSI6ImYiLCJjIjoiMSIsInIiOiIxIn1d",
+        "headers" : {
+
+        },
+        "url" : "https:\/\/g.api.mega.co.nz\/cs?id=3020759117&n=0nwH1AAZ"
+      },
+      "recorded_at" : 1639487422.4525599
+    }
+  ],
+  "name" : "getContents"
+}

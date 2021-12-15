@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import MegaKit
+import MegaKit
 
 class ConfigParserTests: XCTestCase {
     func testParseEmptyConfig() throws {

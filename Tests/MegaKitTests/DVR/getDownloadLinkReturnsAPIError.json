@@ -1,0 +1,33 @@
+{
+  "interactions" : [
+    {
+      "request" : {
+        "headers" : {
+
+        },
+        "method" : "POST",
+        "body" : "W3siYSI6ImciLCJnIjoiMSIsInAiOiJub3QtYS12YWxpZC1saW5rIiwic3NsIjoiMSJ9XQ==",
+        "url" : "https:\/\/g.api.mega.co.nz\/cs?id=3020759117"
+      },
+      "recorded_at" : 1639369375.120317,
+      "response" : {
+        "url" : "https:\/\/g.api.mega.co.nz\/cs?id=3020759117",
+        "body" : [
+          -2
+        ],
+        "headers" : {
+          "Access-Control-Allow-Origin" : "*",
+          "Content-Type" : "application\/json",
+          "Access-Control-Max-Age" : "86400",
+          "Access-Control-Expose-Headers" : "Original-Content-Length",
+          "Content-Length" : "4",
+          "Access-Control-Allow-Headers" : "Content-Type, MEGA-Chrome-Antileak",
+          "Original-Content-Length" : "4",
+          "Connection" : "keep-alive"
+        },
+        "status" : 200
+      }
+    }
+  ],
+  "name" : "getDownloadLinkReturnsAPIError"
+}

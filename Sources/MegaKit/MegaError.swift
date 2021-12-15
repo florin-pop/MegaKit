@@ -7,6 +7,7 @@
 
 import Foundation
 
-public enum MegaError: Error {
-    case badURL, requestFailed, badResponse, unknown, decryptionFailed, unimplemented
+public enum MegaError: Error, Equatable {
+    case badURL, requestFailed, apiError(Int), httpError(Int), badResponse, unknown, decryptionFailed, unimplemented
 }
+

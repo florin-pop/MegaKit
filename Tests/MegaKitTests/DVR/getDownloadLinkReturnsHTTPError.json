@@ -1,0 +1,33 @@
+{
+  "interactions" : [
+    {
+      "response" : {
+        "url" : "https:\/\/g.api.mega.co.nz\/cs?id=3020759117",
+        "body" : [
+          -15
+        ],
+        "headers" : {
+          "Access-Control-Allow-Origin" : "*",
+          "Access-Control-Expose-Headers" : "Original-Content-Length",
+          "Connection" : "keep-alive",
+          "Original-Content-Length" : "5",
+          "Content-Type" : "application\/json",
+          "Access-Control-Max-Age" : "86400",
+          "Content-Length" : "5",
+          "Access-Control-Allow-Headers" : "Content-Type, MEGA-Chrome-Antileak"
+        },
+        "status" : 404
+      },
+      "recorded_at" : 1639371876.521698,
+      "request" : {
+        "body" : "W3siYSI6ImciLCJnIjoiMSIsInAiOiJRNjRUQ0FvWiIsInNzbCI6IjEifV0=",
+        "headers" : {
+
+        },
+        "url" : "https:\/\/g.api.mega.co.nz\/cs?id=3020759117",
+        "method" : "POST"
+      }
+    }
+  ],
+  "name" : "getDownloadLinkReturnsHTTPError"
+}

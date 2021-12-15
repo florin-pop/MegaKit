@@ -1,0 +1,30 @@
+{
+  "name" : "getContentsReturnsAPIError",
+  "interactions" : [
+    {
+      "recorded_at" : 1639488222.6497731,
+      "response" : {
+        "status" : 200,
+        "headers" : {
+          "Content-Length" : "2",
+          "Access-Control-Expose-Headers" : "Original-Content-Length",
+          "Connection" : "keep-alive",
+          "Original-Content-Length" : "2",
+          "Access-Control-Allow-Headers" : "Content-Type, MEGA-Chrome-Antileak",
+          "Access-Control-Allow-Origin" : "*",
+          "Access-Control-Max-Age" : "86400",
+          "Content-Type" : "application\/json"
+        },
+        "url" : "https:\/\/g.api.mega.co.nz\/cs?id=3020759117&n=AAAAAAAA"
+      },
+      "request" : {
+        "method" : "POST",
+        "url" : "https:\/\/g.api.mega.co.nz\/cs?id=3020759117&n=AAAAAAAA",
+        "headers" : {
+
+        },
+        "body" : "W3siYSI6ImYiLCJjIjoiMSIsInIiOiIxIn1d"
+      }
+    }
+  ]
+}
