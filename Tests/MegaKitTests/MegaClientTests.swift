@@ -351,4 +351,3 @@ class GetFileMetadataTests: XCTestCase {
         wait(for: [expectation], timeout: 2)
     }
 }
-
