@@ -9,8 +9,8 @@ import Foundation
 
 public extension String {
     func base64Decoded() -> Data? {
-        let padded = self.replacingOccurrences(of: ",", with: "")
-            .padding(toLength: ((self.count + 3) / 4) * 4,
+        let padded = replacingOccurrences(of: ",", with: "")
+            .padding(toLength: ((count + 3) / 4) * 4,
                      withPad: "=",
                      startingAt: 0)
         let sanitized = padded.replacingOccurrences(of: "-", with: "+")

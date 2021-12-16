@@ -7,35 +7,31 @@
 
 import Foundation
 
-
 public typealias SectionConfig = [String: String]
 public typealias Config = [String: SectionConfig]
-
 
 func trim(_ s: String) -> String {
     let whitespaces = CharacterSet(charactersIn: " \n\r\t")
     return s.trimmingCharacters(in: whitespaces)
 }
 
-
 func stripComment(_ line: String) -> String {
     let parts = line.split(
         separator: "#",
         maxSplits: 1,
-        omittingEmptySubsequences: false)
+        omittingEmptySubsequences: false
+    )
     if parts.count > 0 {
         return String(parts[0])
     }
     return ""
 }
 
-
 func parseSectionHeader(_ line: String) -> String {
     let from = line.index(after: line.startIndex)
     let to = line.index(before: line.endIndex)
-    return String(line[from..<to])
+    return String(line[from ..< to])
 }
-
 
 func parseLine(_ line: String) -> (String, String)? {
     let parts = stripComment(line).split(separator: "=", maxSplits: 1)
@@ -47,13 +43,12 @@ func parseLine(_ line: String) -> (String, String)? {
     return nil
 }
 
-
-public func parseConfig(_ fileContents : String) -> Config {
+public func parseConfig(_ fileContents: String) -> Config {
     var config = Config()
     var currentSectionName = "main"
     for line in fileContents.components(separatedBy: "\n") {
         let line = trim(line)
-        if line.hasPrefix("[") && line.hasSuffix("]") {
+        if line.hasPrefix("["), line.hasSuffix("]") {
             currentSectionName = parseSectionHeader(line)
         } else if let (k, v) = parseLine(line) {
             var section = config[currentSectionName] ?? [:]

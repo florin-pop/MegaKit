@@ -5,27 +5,27 @@
 //  Created by Florin Pop on 10.12.21.
 //
 
-import XCTest
 import MegaKit
+import XCTest
 
 class MegaLinkTests: XCTestCase {
     func testParseEmptyUrl() throws {
-        var initError: Error? = nil
+        var initError: Error?
         do {
             _ = try MegaLink(url: "")
-        } catch let error {
+        } catch {
             initError = error
         }
         XCTAssertEqual(initError as! MegaError, .badURL)
     }
-    
+
     func testParseFileUrl() throws {
         let link = try! MegaLink(url: "https://mega.nz/file/Q64TCAoZ#1h9D4DUWbbiguPuXiIAk1H_fBUmCa442lUwdjE2zvoo")
         XCTAssertEqual(link.type, .file)
         XCTAssertEqual(link.key, "1h9D4DUWbbiguPuXiIAk1H_fBUmCa442lUwdjE2zvoo")
         XCTAssertEqual(link.id, "Q64TCAoZ")
     }
-    
+
     func testParseFolderUrl() throws {
         let link = try! MegaLink(url: "https://mega.nz/folder/tq4iDSYK#QjKVw7PjbdPlggM1vkDtIg")
         XCTAssertEqual(link.type, .folder)

@@ -10,4 +10,3 @@ import Foundation
 public enum MegaError: Error, Equatable {
     case badURL, requestFailed, apiError(Int), httpError(Int), badResponse, unknown, decryptionFailed, unimplemented
 }
-

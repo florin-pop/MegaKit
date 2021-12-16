@@ -5,15 +5,15 @@
 //  Created by Florin Pop on 25.11.21.
 //
 
-import Foundation
 import CryptoSwift
+import Foundation
 
 public extension AES {
     enum BlockMode {
         case ctr
         case cbc
     }
-    
+
     convenience init?(key base64Key: Data, blockMode: BlockMode, padding: Padding) {
         if blockMode == .ctr {
             let intKey = base64Key.toUInt32Array()
@@ -21,7 +21,7 @@ public extension AES {
             let key = Data(uInt32Array: [keyNOnce[0], keyNOnce[1], keyNOnce[2], keyNOnce[3]])
             let iiv = [keyNOnce[4], keyNOnce[5], 0, 0]
             let iv = Data(uInt32Array: iiv)
-            
+
             try? self.init(key: Array(key), blockMode: CTR(iv: Array(iv)), padding: padding)
         } else if blockMode == .cbc {
             let key: Data
@@ -31,10 +31,10 @@ public extension AES {
             } else {
                 key = base64Key
             }
-            
+
             let iiv: [UInt32] = [0, 0, 0, 0]
             let iv = Data(uInt32Array: iiv)
-            
+
             try? self.init(key: Array(key), blockMode: CBC(iv: Array(iv)), padding: padding)
         } else {
             return nil
@@ -55,7 +55,7 @@ public enum DecryptorError: Error {
 public protocol SequentialIOHandle {
     init(forReadingFrom url: URL) throws
     init(forWritingTo url: URL) throws
-    
+
     func readData(ofLength: Int) -> Data
     func write(_ data: Data)
 }
@@ -66,24 +66,24 @@ public typealias AESFileDecryptor = AESDecryptor<FileHandle>
 
 public class AESDecryptor<Handle: SequentialIOHandle> {
     public weak var delegate: AESDecryptorDelegate?
-    
+
     public init() {}
-    
+
     public func decrypt(encryptedFileUrl: URL, decryptedFileUrl: URL, key: Data, completion: (() -> Void)?) {
-        self.delegate?.decryptorDidStart(decryptedFileUrl: decryptedFileUrl)
-        
+        delegate?.decryptorDidStart(decryptedFileUrl: decryptedFileUrl)
+
         guard let encryptedFileHandle = try? Handle(forReadingFrom: encryptedFileUrl) else {
-            self.delegate?.decryptorDidFinish(decryptedFileUrl: decryptedFileUrl, error: DecryptorError.readEncryptedFile)
+            delegate?.decryptorDidFinish(decryptedFileUrl: decryptedFileUrl, error: DecryptorError.readEncryptedFile)
             completion?()
             return
         }
-        
+
         guard let decryptedFileHandle = try? Handle(forWritingTo: decryptedFileUrl) else {
-            self.delegate?.decryptorDidFinish(decryptedFileUrl: decryptedFileUrl, error: DecryptorError.writeDecryptedFile)
+            delegate?.decryptorDidFinish(decryptedFileUrl: decryptedFileUrl, error: DecryptorError.writeDecryptedFile)
             completion?()
             return
         }
-        
+
         DispatchQueue.global(qos: .default).async { [weak self] in
             do {
                 var decryptor = try AES(key: key, blockMode: .ctr, padding: .noPadding)?.makeDecryptor()
@@ -91,17 +91,16 @@ public class AESDecryptor<Handle: SequentialIOHandle> {
                 repeat {
                     let encryptedData = encryptedFileHandle.readData(ofLength: 64 * 1024)
                     reachedEndOfFile = encryptedData.isEmpty
-                    
-                    let decryptedBytes: Array<UInt8>?
-                    
+
+                    let decryptedBytes: [UInt8]?
+
                     if !encryptedData.isEmpty {
                         decryptedBytes = try decryptor?.update(withBytes: encryptedData.bytes)
                     } else {
                         decryptedBytes = try decryptor?.finish()
                     }
-                    
-                    if let decryptedBytes = decryptedBytes, !decryptedBytes.isEmpty
-                    {
+
+                    if let decryptedBytes = decryptedBytes, !decryptedBytes.isEmpty {
                         decryptedFileHandle.write(Data(decryptedBytes))
                         self?.delegate?.decryptorDidDecrypt(bytesDecrypted: Int64(decryptedBytes.count))
                     }

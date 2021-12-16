@@ -14,7 +14,7 @@ public extension Data {
             Swift.withUnsafeBytes(of: val.bigEndian) { self.append(contentsOf: $0) }
         }
     }
-    
+
     func toUInt32Array() -> [UInt32] {
         var result = [UInt32]()
         var paddedData = self
@@ -22,8 +22,8 @@ public extension Data {
             paddedData.append(Data([UInt8](repeating: 0, count: paddedData.count % 4)))
         }
         let dataChunks = paddedData.blocks(of: 4)
-        
-        for i in 0..<dataChunks.count {
+
+        for i in 0 ..< dataChunks.count {
             // https://stackoverflow.com/a/56854262
             let bigEndianUInt32 = dataChunks[i].withUnsafeBytes { $0.load(as: UInt32.self) }
             let value = CFByteOrderGetCurrent() == CFByteOrder(CFByteOrderLittleEndian.rawValue)
@@ -31,13 +31,13 @@ public extension Data {
                 : bigEndianUInt32
             result.append(value)
         }
-        
+
         return result
     }
-    
+
     // https://www.hackingwithswift.com/example-code/language/how-to-split-an-array-into-chunks
     func blocks(of size: Int) -> [[Element]] {
-        return stride(from: 0, to: count, by: size).map {
+        stride(from: 0, to: count, by: size).map {
             Array(self[$0 ..< Swift.min($0 + size, count)])
         }
     }
