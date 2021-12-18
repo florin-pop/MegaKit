@@ -71,6 +71,7 @@
 		4E8A73092761358700BD3B5F /* MegaKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MegaKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E8A730E2761358700BD3B5F /* ConfigParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigParserTests.swift; sourceTree = "<group>"; };
 		4E8A731927613D6B00BD3B5F /* AESDecryptorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AESDecryptorTests.swift; sourceTree = "<group>"; };
+		4E8F8163276DF87E00A50232 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		4E970C6027627FE300A73229 /* Fixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fixtures.swift; sourceTree = "<group>"; };
 		4E970C6327630DBD00A73229 /* MegaLinkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MegaLinkTests.swift; sourceTree = "<group>"; };
 		4E970C6527631CDC00A73229 /* MegaClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MegaClient.swift; sourceTree = "<group>"; };
@@ -109,6 +110,7 @@
 		4E08701026A9937400279E6A = {
 			isa = PBXGroup;
 			children = (
+				4E8F8163276DF87E00A50232 /* Package.swift */,
 				4E8A73012761358700BD3B5F /* MegaKit */,
 				4E8A730D2761358700BD3B5F /* MegaKitTests */,
 				4E08701A26A9937400279E6A /* Products */,
