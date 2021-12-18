@@ -27,7 +27,6 @@ public struct MegaLink {
     public let type: LinkType
     public let id: String
     public let key: String
-    let specific: String? // ?
 
     public init(url: String) throws {
         self.url = url
@@ -51,10 +50,5 @@ public struct MegaLink {
         let string = url as NSString
         id = string.substring(with: match.range(at: 1))
         key = string.substring(with: match.range(at: 2)).replacingOccurrences(of: "%20", with: "")
-        if match.numberOfRanges > 3 {
-            specific = string.substring(with: match.range(at: 3))
-        } else {
-            specific = nil
-        }
     }
 }
