@@ -115,10 +115,7 @@ extension MegaNodeMetadata {
             return nil
         }
 
-        var decryptedKey = base64EncryptedKey.blocks(of: 16).compactMap { try? $0.decrypt(cipher: cipher) }.reduce([], +)
-        while decryptedKey.count % 16 != 0 {
-            decryptedKey = decryptedKey + [0]
-        }
+        let decryptedKey = base64EncryptedKey.blocks(of: 16).compactMap { try? $0.decrypt(cipher: cipher).padded(to: 16, padding: 0) }.reduce([], +)
         return Data(decryptedKey)
     }
 
