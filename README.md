@@ -2,6 +2,23 @@
 
 Lightweight Swift framework for downloading files from mega.nz
 
+## Why?
+
+The [official iOS SDK](https://github.com/meganz/iOS) is fully featured and therefore quite bloated for a small app.
+
+The purpose of this framework is to only provide support for downloading and decrypting files or folders for the apps that require this functionality.
+
+The runtime only depends on 2 Swift packages:
+ - [`BigInt`](https://github.com/attaswift/BigInt) is used to implement the `RSA` decryption for the login process
+ - [`CryptoSwift`](https://github.com/krzyzanowskim/CryptoSwift) is used for the `AES` decrytion when downloading files
+
+## How
+
+Some of the code is reverse engineered, some is inspired form:
+- [`megatools`](http://megous.com/git/megatools): a command line client for Mega.nz
+- [`mega.py`](https://github.com/odwyersoftware/mega.py): Python library for Mega.nz
+- [`JDownloader`](https://jdownloader.org/home/index): an open source download manager
+
 ## Login example
 
 ```
