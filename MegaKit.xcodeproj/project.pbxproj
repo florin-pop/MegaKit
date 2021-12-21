@@ -13,8 +13,6 @@
 		4E471CD4276912F000DE402C /* getContentsReturnsHTTPError.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E471CD3276912F000DE402C /* getContentsReturnsHTTPError.json */; };
 		4E471CD627691A0800DE402C /* getContentsReturnsBadResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E471CD527691A0800DE402C /* getContentsReturnsBadResponse.json */; };
 		4E471CD8276922E600DE402C /* getFileMetadata.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E471CD7276922E600DE402C /* getFileMetadata.json */; };
-		4E471CE02769AEAF00DE402C /* login.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E471CDF2769AEAF00DE402C /* login.json */; };
-		4E471CE2276A77F800DE402C /* MegaLoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E471CE1276A77F800DE402C /* MegaLoginTests.swift */; };
 		4E8A73042761358700BD3B5F /* MegaKit.docc in Sources */ = {isa = PBXBuildFile; fileRef = 4E8A73032761358700BD3B5F /* MegaKit.docc */; };
 		4E8A730A2761358700BD3B5F /* MegaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E8A73002761358700BD3B5F /* MegaKit.framework */; };
 		4E8A730F2761358700BD3B5F /* ConfigParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8A730E2761358700BD3B5F /* ConfigParserTests.swift */; };
@@ -62,8 +60,6 @@
 		4E471CD3276912F000DE402C /* getContentsReturnsHTTPError.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = getContentsReturnsHTTPError.json; sourceTree = "<group>"; };
 		4E471CD527691A0800DE402C /* getContentsReturnsBadResponse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = getContentsReturnsBadResponse.json; sourceTree = "<group>"; };
 		4E471CD7276922E600DE402C /* getFileMetadata.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = getFileMetadata.json; sourceTree = "<group>"; };
-		4E471CDF2769AEAF00DE402C /* login.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = login.json; sourceTree = "<group>"; };
-		4E471CE1276A77F800DE402C /* MegaLoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MegaLoginTests.swift; sourceTree = "<group>"; };
 		4E4C80292759080A0058B8DE /* ConfigParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigParser.swift; sourceTree = "<group>"; };
 		4E8A73002761358700BD3B5F /* MegaKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MegaKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E8A73022761358700BD3B5F /* MegaKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MegaKit.h; sourceTree = "<group>"; };
@@ -154,7 +150,6 @@
 				4E970C6027627FE300A73229 /* Fixtures.swift */,
 				4EB91FB12765C10E00A9317D /* MegaClientTests.swift */,
 				4E970C6327630DBD00A73229 /* MegaLinkTests.swift */,
-				4E471CE1276A77F800DE402C /* MegaLoginTests.swift */,
 				4EB91FB5276629BB00A9317D /* DVR */,
 			);
 			name = MegaKitTests;
@@ -181,7 +176,6 @@
 				4EDAE8A7276714FA00BFF222 /* getDownloadLinkReturnsBadResponse.json */,
 				4EDAE8A8276714FA00BFF222 /* getDownloadLinkReturnsHTTPError.json */,
 				4E471CD7276922E600DE402C /* getFileMetadata.json */,
-				4E471CDF2769AEAF00DE402C /* login.json */,
 			);
 			path = DVR;
 			sourceTree = "<group>";
@@ -303,7 +297,6 @@
 				4E471CD627691A0800DE402C /* getContentsReturnsBadResponse.json in Resources */,
 				4EDAE8A9276714FA00BFF222 /* getDownloadLinkReturnsBadResponse.json in Resources */,
 				4E471CCE2768CF5300DE402C /* getContents.json in Resources */,
-				4E471CE02769AEAF00DE402C /* login.json in Resources */,
 				4EDAE8A027667B8D00BFF222 /* getDownloadLink.json in Resources */,
 				4E471CD4276912F000DE402C /* getContentsReturnsHTTPError.json in Resources */,
 				4EDAE8AA276714FA00BFF222 /* getDownloadLinkReturnsHTTPError.json in Resources */,
@@ -330,7 +323,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/opt/homebrew/bin/swiftformat . --swiftversion 5.5.2\n";
+			shellScript = "swiftformat . --swiftversion 5.5.2\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -359,7 +352,6 @@
 				4E8A731A27613D6B00BD3B5F /* AESDecryptorTests.swift in Sources */,
 				4E970C6427630DBD00A73229 /* MegaLinkTests.swift in Sources */,
 				4E8A730F2761358700BD3B5F /* ConfigParserTests.swift in Sources */,
-				4E471CE2276A77F800DE402C /* MegaLoginTests.swift in Sources */,
 				4E970C6127627FE300A73229 /* Fixtures.swift in Sources */,
 				4EB91FB22765C10E00A9317D /* MegaClientTests.swift in Sources */,
 			);
