@@ -83,3 +83,13 @@ megaClient.getContents(of: megaLink, sessionID: sessionID) { result in
     }
 }
 ```
+
+## Decrypt downloaded file
+
+```
+let decryptor = AESFileDecryptor()
+
+decryptor.decrypt(encryptedFileUrl: encryptedFileUrl, decryptedFileUrl: decryptedFileUrl, key: decryptionKey) {
+  // Decryption has either finished or failed, handle the success or error via the delegate                   
+}
+```
