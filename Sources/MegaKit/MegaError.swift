@@ -8,5 +8,5 @@
 import Foundation
 
 public enum MegaError: Error, Equatable {
-    case badURL, requestFailed, apiError(Int), httpError(Int), badResponse, unknown, decryptionFailed, unimplemented
+    case badURL, requestFailed, apiError(Int), httpError(Int), badResponse, unknown, cryptographyError, unimplemented
 }

@@ -253,7 +253,7 @@ public struct MegaClient {
                       let cipher = AES(key: base64Key, blockMode: .cbc, padding: .zeroPadding),
                       let fileName = fileInfo.decryptAttributes(using: cipher)?.name
                 else {
-                    completion(.failure(.decryptionFailed))
+                    completion(.failure(.cryptographyError))
                     return
                 }
 
@@ -269,7 +269,7 @@ public struct MegaClient {
         guard let base64Key = link.key.base64Decoded(),
               let cipher = AES(key: base64Key, blockMode: .cbc, padding: .zeroPadding)
         else {
-            completion(.failure(.decryptionFailed))
+            completion(.failure(.cryptographyError))
             return
         }
 
@@ -297,20 +297,20 @@ public struct MegaClient {
                     decryptedNodes = try tree.nodes.reduce([String: DecryptedMegaNodeMetadata]()) { dict, encryptedMetadata in
                         guard let decryptedKey = encryptedMetadata.decryptKey(using: cipher)
                         else {
-                            throw MegaError.decryptionFailed
+                            throw MegaError.cryptographyError
                         }
 
                         guard let attributes = encryptedMetadata.decryptAttributes(using: cipher),
                               let nodeType = DecryptedMegaNodeMetadata.NodeType(rawValue: encryptedMetadata.type)
                         else {
-                            throw MegaError.decryptionFailed
+                            throw MegaError.cryptographyError
                         }
                         var dict = dict
                         dict[encryptedMetadata.id] = DecryptedMegaNodeMetadata(type: nodeType, id: encryptedMetadata.id, parent: encryptedMetadata.parent, attributes: attributes, key: decryptedKey, timestamp: encryptedMetadata.timestamp, size: encryptedMetadata.size)
                         return dict
                     }
                 } catch {
-                    completion(.failure(.decryptionFailed))
+                    completion(.failure(.cryptographyError))
                     return
                 }
 
@@ -321,11 +321,13 @@ public struct MegaClient {
         }
     }
 
-    struct MegaLoginVersion: Decodable {
-        let number: Int
+    struct MegaLoginChallenge: Decodable {
+        let version: Int
+        let salt: String?
 
         enum CodingKeys: String, CodingKey {
-            case number = "v"
+            case version = "v"
+            case salt = "s"
         }
     }
 
@@ -345,69 +347,39 @@ public struct MegaClient {
             return
         }
 
-        request.execute(in: urlSession) { (result: Result<MegaLoginVersion, MegaError>) in
+        request.execute(in: urlSession) { (result: Result<MegaLoginChallenge, MegaError>) in
             switch result {
-            case let .success(loginVersion):
-                guard loginVersion.number == 1 else {
+            case let .success(loginChallenge):
+                let userHash: String
+                let passwordKey: Data
+
+                if let salt = loginChallenge.salt,
+                   loginChallenge.version == 2
+                {
+                    switch getV2UserHash(from: password, salt: salt) {
+                    case let .success(result):
+                        (userHash, passwordKey) = result
+                    case let .failure(error):
+                        completion(.failure(error))
+                        return
+                    }
+                } else if loginChallenge.version == 1 {
+                    switch getV1UserHash(from: email, password: password) {
+                    case let .success(result):
+                        (userHash, passwordKey) = result
+                    case let .failure(error):
+                        completion(.failure(error))
+                        return
+                    }
+                } else {
                     completion(.failure(.unimplemented))
                     return
                 }
 
-                guard let arr = password.data(using: .utf8)?.toUInt32Array() else {
-                    completion(.failure(.unknown))
-                    return
-                }
-
-                // https://github.com/odwyersoftware/mega.py/blob/c27d8379e48af23072c46350396ae75f84ec1e30/src/mega/crypto.py#L55
-                var passwordKey: [UInt32] = [0x93C4_67E3, 0x7DB0_C7A4, 0xD1BE_3F81, 0x0152_CB56]
-                for _ in 0 ..< 0x10000 {
-                    for j in stride(from: 0, to: arr.count, by: 4) {
-                        var key: [UInt32] = [0, 0, 0, 0]
-                        for i in 0 ..< 4 {
-                            if i + j < arr.count {
-                                key[i] = arr[i + j]
-                            }
-                        }
-
-                        guard let cipher = AES(key: Data(uInt32Array: key), blockMode: .cbc, padding: .noPadding),
-                              let encryptedKey = try? Data(uInt32Array: passwordKey).encrypt(cipher: cipher).toUInt32Array()
-                        else {
-                            completion(.failure(.decryptionFailed))
-                            return
-                        }
-                        passwordKey = encryptedKey
-                    }
-                }
-
-                guard let s32 = email.data(using: .utf8)?.toUInt32Array(),
-                      let cipher = AES(key: Data(uInt32Array: passwordKey), blockMode: .cbc, padding: .noPadding)
-                else {
-                    completion(.failure(.decryptionFailed))
-                    return
-                }
-
-                var h32: [UInt32] = [0, 0, 0, 0]
-                for i in 0 ..< s32.count {
-                    h32[i % 4] ^= s32[i]
-                }
-
-                var h32Data = Data(uInt32Array: h32)
-                for _ in 0 ..< 0x4000 {
-                    guard let encryptedHash = try? h32Data.encrypt(cipher: cipher) else {
-                        completion(.failure(.decryptionFailed))
-                        return
-                    }
-                    h32Data = encryptedHash
-                }
-
-                h32 = h32Data.toUInt32Array()
-
-                let passwordHash = Data(uInt32Array: [h32[0], h32[2]]).base64EncodedString()
-
-                openSession(email: email, userHash: passwordHash) { result in
+                openSession(email: email, userHash: userHash) { result in
                     switch result {
                     case let .success(loginSession):
-                        getSessionId(passwordKey: Data(uInt32Array: passwordKey), loginSession: loginSession) { result in
+                        getSessionId(passwordKey: passwordKey, loginSession: loginSession) { result in
                             switch result {
                             case let .success(sessionID):
                                 completion(.success(sessionID))
@@ -423,6 +395,70 @@ public struct MegaClient {
                 completion(.failure(error))
             }
         }
+    }
+
+    func getV2UserHash(from password: String, salt: String) -> Result<(String, Data), MegaError> {
+        guard let passwordData = password.data(using: .utf8),
+              let saltData = salt.base64Decoded()
+        else {
+            return .failure(.unknown)
+        }
+        guard let pbdkfKey = try? PKCS5.PBKDF2(password: passwordData.bytes, salt: saltData.bytes, iterations: 100_000, keyLength: 32, variant: .sha2(.sha512)).calculate() else {
+            return .failure(.cryptographyError)
+        }
+        let passwordKey = pbdkfKey[..<16]
+        let userHash = pbdkfKey[16...]
+
+        return .success((Data(userHash).base64EncodedString(), Data(passwordKey)))
+    }
+
+    func getV1UserHash(from email: String, password: String) -> Result<(String, Data), MegaError> {
+        guard let arr = password.data(using: .utf8)?.toUInt32Array() else {
+            return .failure(.unknown)
+        }
+
+        // https://github.com/odwyersoftware/mega.py/blob/c27d8379e48af23072c46350396ae75f84ec1e30/src/mega/crypto.py#L55
+        var passwordKey: [UInt32] = [0x93C4_67E3, 0x7DB0_C7A4, 0xD1BE_3F81, 0x0152_CB56]
+        for _ in 0 ..< 0x10000 {
+            for j in stride(from: 0, to: arr.count, by: 4) {
+                var key: [UInt32] = [0, 0, 0, 0]
+                for i in 0 ..< 4 {
+                    if i + j < arr.count {
+                        key[i] = arr[i + j]
+                    }
+                }
+
+                guard let cipher = AES(key: Data(uInt32Array: key), blockMode: .cbc, padding: .noPadding),
+                      let encryptedKey = try? Data(uInt32Array: passwordKey).encrypt(cipher: cipher).toUInt32Array()
+                else {
+                    return .failure(.cryptographyError)
+                }
+                passwordKey = encryptedKey
+            }
+        }
+
+        guard let s32 = email.data(using: .utf8)?.toUInt32Array(),
+              let cipher = AES(key: Data(uInt32Array: passwordKey), blockMode: .cbc, padding: .noPadding)
+        else {
+            return .failure(.cryptographyError)
+        }
+
+        var h32: [UInt32] = [0, 0, 0, 0]
+        for i in 0 ..< s32.count {
+            h32[i % 4] ^= s32[i]
+        }
+
+        var h32Data = Data(uInt32Array: h32)
+        for _ in 0 ..< 0x4000 {
+            guard let encryptedHash = try? h32Data.encrypt(cipher: cipher) else {
+                return .failure(.cryptographyError)
+            }
+            h32Data = encryptedHash
+        }
+
+        h32 = h32Data.toUInt32Array()
+
+        return .success((Data(uInt32Array: [h32[0], h32[2]]).base64EncodedString(), Data(uInt32Array: passwordKey)))
     }
 
     func openSession(email: String, userHash: String, completion: @escaping (Result<MegaLoginSession, MegaError>) -> Void) {
@@ -467,14 +503,14 @@ public struct MegaClient {
         guard let cipher = AES(key: passwordKey, blockMode: .cbc, padding: .noPadding),
               let masterKey = try? loginSession.encryptedMasterKey.base64Decoded()?.decrypt(cipher: cipher)
         else {
-            completion(.failure(.decryptionFailed))
+            completion(.failure(.cryptographyError))
             return
         }
 
         guard let cipher = AES(key: masterKey, blockMode: .cbc, padding: .noPadding),
               let encryptedRSAPrivateKeyData = loginSession.encryptedRSAPrivateKey.base64Decoded()?.toUInt32Array()
         else {
-            completion(.failure(.decryptionFailed))
+            completion(.failure(.cryptographyError))
             return
         }
 
@@ -482,7 +518,7 @@ public struct MegaClient {
 
         for i in stride(from: 0, to: encryptedRSAPrivateKeyData.count, by: 4) {
             guard let decryptedRSAPrivateKeyPart = try? Data(uInt32Array: [encryptedRSAPrivateKeyData[i], encryptedRSAPrivateKeyData[i + 1], encryptedRSAPrivateKeyData[i + 2], encryptedRSAPrivateKeyData[i + 3]]).decrypt(cipher: cipher) else {
-                completion(.failure(.decryptionFailed))
+                completion(.failure(.cryptographyError))
                 return
             }
             decryptedRSAPrivateKey.append(decryptedRSAPrivateKeyPart)
@@ -505,7 +541,7 @@ public struct MegaClient {
         let rsa_modulus_n = first_factor_p * second_factor_q
 
         guard let encryptedSessionID = loginSession.encryptedSessionID.base64Decoded() else {
-            completion(.failure(.decryptionFailed))
+            completion(.failure(.cryptographyError))
             return
         }
 
